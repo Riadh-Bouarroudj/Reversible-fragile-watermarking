@@ -1,4 +1,3 @@
-import pydicom
 import cv2
 import numpy as np 
 import imageio.v2 as imageio
@@ -22,11 +21,7 @@ wat_path = os.path.join(current_directory, 'Images/Peppers.tiff')
 
 
 # Load the cover image
-if img_path.endswith('dcm'):               #Read DICOM files
-    dataset = pydicom.dcmread(img_path)
-    img = dataset.pixel_array
-else:
-    img = imageio.imread(img_path)
+img = imageio.imread(img_path)
 if np.max(img)>255 or np.min(img)<0:
     raise ValueError("Please use 8-bit images with pixel values ranging between 0 and 255")
 """print(img[0][0:3])"""
