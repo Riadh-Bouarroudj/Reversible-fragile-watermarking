@@ -8,13 +8,13 @@ def main():
       elif len((np.asarray(original_img)).shape)==2:
             long=1
       print("Number of channels:", long)
-      watermarked_img,max_subband=embedding_DWT_watermark(original_img,org_watermark)
+      watermarked_img,max_frequencies=embedding_DWT_watermark(original_img,org_watermark)
 
       if self_embed==True:      
             org_water=self_embedding(watermarked_img)
       else:
             org_water=np.copy(org_watermark)
-      ext_watermark,restored_img=extraction_DWT_watermark(watermarked_img,max_subband)
+      ext_watermark,restored_img=extraction_DWT_watermark(watermarked_img,max_frequencies)
       Display_watermarked_image(original_img,watermarked_img,restored_img)
       Display_watermark(org_water,ext_watermark)
 
