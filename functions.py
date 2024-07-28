@@ -6,6 +6,7 @@ from skimage.metrics import structural_similarity as ssim
 from config_variables import *
 import pickle
 import os
+import warnings
 
 #Henon map
 def encrypt_image(image, key):
@@ -116,32 +117,12 @@ def watermark_to_digit(wat):
 
 
 
-def embedding_DWT_watermark(cover,org_watermark) :
+def embedding_DWT_watermark(original_img,org_watermark) :
+  cover=np.copy(original_img)
   if len((np.asarray(cover)).shape)==3:
      long=3
   else:
      long=1
-
-  lis=[]
-  for channel in range (long):      #Normalize the cover image to the range of [4,251] to avoid overfloaw and underflow problems
-      if long==3:
-        img=cover[:, :, channel]
-      else:
-        img=cover
-      for i in range (img_size):
-         for j in range (img_size):
-            if img[i][j]<1:
-               img[i][j]=1
-            elif img[i][j]>254:
-               img[i][j]=254
-
-      lis.append(img)
-  if long==3:
-       cover = np.stack([lis[0], lis[1], lis[2]], axis=2)
-  else:
-       cover=lis[0]
-
-  original_img=np.copy(cover)
 
   # Load the watermarks
   if self_embed==True:
@@ -178,6 +159,7 @@ def embedding_DWT_watermark(cover,org_watermark) :
    subband=HH
    #Loop on the frequency subbands of the image
    a=0
+   power=(int(bloc_size/3))
    #Round the coefficient values to 5 numbers after the decimal point to avoid problems caused by DWT-IDWT 
    subband=np.round(subband,5)
    #Loop on each subband  
@@ -192,10 +174,10 @@ def embedding_DWT_watermark(cover,org_watermark) :
             while k<3:
                if  v*BPP==8: break        # Ensure that 8 bits are embedded in each block to provide tamper localization           
                max=-5000
-               for m in range(2):
-                for n in range(2):
-                  if subband[a+2*j+m][b+2*k+n]>max:
-                     max=subband[a+2*j+m][b+2*k+n]
+               for m in range(int(bloc_size/3)):
+                for n in range(int(bloc_size/3)):
+                  if subband[a+power*j+m][b+power*k+n]>max:
+                     max=subband[a+power*j+m][b+power*k+n]
                max_sub.append(max)      
 
                #Watermark bits embedding
@@ -204,10 +186,10 @@ def embedding_DWT_watermark(cover,org_watermark) :
                find=False
                for m in range(2):
                 for n in range(2):
-                  if subband[a+2*j+m][b+2*k+n]==max and find==False:
+                  if subband[a+power*j+m][b+power*k+n]==max and find==False:
                      find=True
                      if bits=='1':
-                        subband[a+2*j+m][b+2*k+n]=subband[a+2*j+m][b+2*k+n]+1
+                        subband[a+power*j+m][b+power*k+n]=subband[a+power*j+m][b+power*k+n]+1
                v=v+1
                k=k+1
             j=j+1
@@ -220,6 +202,12 @@ def embedding_DWT_watermark(cover,org_watermark) :
    watermarked = pywt.idwt2(watermarked_coeffs, 'haar') 
    
    #Convert the watermarked channel to integer values
+   if np.min(watermarked)<0:
+      warnings.warn("Underflow encountered", UserWarning)
+   if np.max(watermarked)>=255.5:
+      warnings.warn("Overflow encountered", UserWarning)
+      #print(np.max(watermarked))
+
    for i in range (img_size):
       for j in range (img_size):
          if watermarked[i][j]<0:
@@ -276,6 +264,7 @@ def extraction_DWT_watermark(imagex,max_subband):
      subband=np.round(subband,5)
      #Loop on each frequency subband
      a=0
+     power=(int(bloc_size/3))
      while a+bloc_size<=len(subband):       
         b=0
         while b+bloc_size<=len(subband):
@@ -292,12 +281,12 @@ def extraction_DWT_watermark(imagex,max_subband):
                   max1=-5000
                   x1=0
                   y1=0
-                  for m in range(2):
-                    for n in range(2):
-                     if subband[a+2*j+m][b+2*k+n]>max1:
-                        max1=subband[a+2*j+m][b+2*k+n]   
-                        x1=a+2*j+m
-                        y1=b+2*k+n
+                  for m in range(int(bloc_size/3)):
+                    for n in range(int(bloc_size/3)):
+                     if subband[a+power*j+m][b+power*k+n]>max1:
+                        max1=subband[a+power*j+m][b+power*k+n]   
+                        x1=a+power*j+m
+                        y1=b+power*k+n
 
                   if max1>max_sub[z]+0.1: 
                      bit='1'   
@@ -512,4 +501,3 @@ def Display_watermark(org_water,Auth_watermark):
    ax3.imshow(tamper, cmap='binary',vmin=0, vmax=1)
    ax3.set_title('Tampering')
    plt.show()
-
