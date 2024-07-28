@@ -26,9 +26,9 @@ def TIFF_save(watermarked_img):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(TIFF_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(TIFF_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
@@ -53,9 +53,9 @@ def PNG_save(watermarked_img):
    else:
       org_water=org_watermark
    
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(png_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(png_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
@@ -80,9 +80,9 @@ def JPEG_save(watermarked_img,qual):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(jpeg_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(jpeg_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2,ax3) = plt.subplots(1, 3)
@@ -106,9 +106,9 @@ def Rotation_attack(watermarked_img,rot):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(rotated_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(rotated_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2,ax3) = plt.subplots(1, 3)
@@ -131,9 +131,9 @@ def Flip_direction_attack(watermarked_img,ax):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(flipped_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(flipped_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    flipped_im=flipped_img
@@ -153,9 +153,9 @@ def Scaling_attack(watermarked_img,size):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(scaled_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(scaled_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2,ax3) = plt.subplots(1, 3)
@@ -179,9 +179,9 @@ def Translation_attack(watermarked_img,dx,dy):
     else:
       org_water=org_watermark
 
-    with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-    ext_watermark,restored_img =extraction_DWT_watermark(translated_img,max_subband)
+    with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+    ext_watermark,restored_img =extraction_DWT_watermark(translated_img,max_frequencies)
     tamper=Tamper_detection(org_water,ext_watermark)
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
@@ -208,9 +208,9 @@ def Zooming_attack(watermarked_img,XD, YD, sizex, sizey):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark( zoomed_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark( zoomed_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
@@ -240,9 +240,9 @@ def Scanning_attack(watermarked_img,type,size=256,rot=30):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark( S_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark( S_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
@@ -285,9 +285,9 @@ def Gaussian_noise(watermarked_img,mean,stddev):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(noisy_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(noisy_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2,ax3) = plt.subplots(1, 3)
@@ -317,9 +317,9 @@ def Salt_paper(watermarked_img,salt_vs_pepper,amount):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(salt_paper_image,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(salt_paper_image,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2,ax3) = plt.subplots(1, 3)
@@ -362,9 +362,9 @@ def Speckle_noise(watermarked_img):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(noisy_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(noisy_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
    
    fig, (ax1, ax2,ax3) = plt.subplots(1, 3)
@@ -387,9 +387,9 @@ def Median_filtring(watermarked_img,size):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(filtered_image,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(filtered_image,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2,ax3) = plt.subplots(1, 3)
@@ -429,9 +429,9 @@ def Average_filtring(watermarked_img,size):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(filtered_image,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(filtered_image,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2,ax3) = plt.subplots(1, 3)
@@ -454,9 +454,9 @@ def Gaussian_filtring(watermarked_img):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(filtered_image,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(filtered_image,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2,ax3) = plt.subplots(1, 3)
@@ -500,9 +500,9 @@ def Histogram_equalization(watermarked_img):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(filtered_image,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(filtered_image,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax0,ax1, ax2,ax3) = plt.subplots(1, 4)
@@ -527,9 +527,9 @@ def Low_pass(watermarked_img,kernel,co):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark( blurred,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark( blurred,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
@@ -578,9 +578,9 @@ def Motion_blur(watermarked_img,size,angle):
    else:
       org_water=org_watermark
    
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark( blurred_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark( blurred_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
@@ -624,9 +624,9 @@ def Cropping_attack(watermarked_img,XD, YD, sizex, sizey):
    else:
       org_water=org_watermark
       
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark( cropped_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark( cropped_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
    tamper=Tamper_localization(tamper)
 
@@ -671,9 +671,9 @@ def Copy_move_attack(watermarked_img,XD, YD, XD2, YD2, sizex, sizey):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark( Copy_move_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark( Copy_move_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
    tamper=Tamper_localization(tamper)
 
@@ -725,9 +725,9 @@ def Copy_paste_attack(watermarked_img,XD, YD,sizex, sizey):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark( Copy_paste_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark( Copy_paste_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
    tamper=Tamper_localization(tamper)
 
@@ -775,9 +775,9 @@ def Text_addition(watermarked_img,text,x,y,size):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark( texted_image,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark( texted_image,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
@@ -827,9 +827,9 @@ def Content_addition(watermarked_img,des_x, des_y ,sizex,sizey):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img=extraction_DWT_watermark( content_addition_img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img=extraction_DWT_watermark( content_addition_img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
    tamper=Tamper_localization(tamper)
 
@@ -899,9 +899,9 @@ def Constant_feature_attack(type,watermarked_img,XD, YD, xsize, ysize,MSB):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark( img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark( img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
@@ -965,9 +965,9 @@ def Content_only_attack(type,watermarked_img,XD, YD,xsize, ysize,MSB):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark( img,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark( img,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
@@ -1010,9 +1010,9 @@ def VQ_attack(watermarked_img):
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark( quantized,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark( quantized,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
    
    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
@@ -1039,9 +1039,9 @@ def Constant_small_noise_addition(watermarked_img, num_steps, delta):   #add a n
    else:
       org_water=org_watermark
 
-   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'rb') as file:
-      max_subband = pickle.load(file)
-   ext_watermark,restored_img =extraction_DWT_watermark(image,max_subband)
+   with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'rb') as file:
+      max_frequencies = pickle.load(file)
+   ext_watermark,restored_img =extraction_DWT_watermark(image,max_frequencies)
    tamper=Tamper_detection(org_water,ext_watermark)
 
    """if len((np.asarray(watermarked_img)).shape)==3:
