@@ -131,7 +131,7 @@ def embedding_DWT_watermark(original_img,org_watermark) :
       Auth_wat = org_watermark
 
   Auth_arr=[]
-  max_subband=[]
+  max_frequencies=[]
   #Prepare the watermarks and transform them to long binary digits
   for channel in range(long):
     if long==3:
@@ -195,7 +195,7 @@ def embedding_DWT_watermark(original_img,org_watermark) :
             j=j+1
          b=b+bloc_size
      a=a+bloc_size
-   max_subband.append(max_sub)
+   max_frequencies.append(max_sub)
    HH=subband
    #Apply inverse DWT to the watermarked subbands
    watermarked_coeffs = LL, (LH, HL, HH)
@@ -228,13 +228,13 @@ def embedding_DWT_watermark(original_img,org_watermark) :
   else:
       watermarked_img=w_comp_arr[0]
   
-  with open(os.path.join(os.path.dirname(__file__), 'Images/Max_subband.pkl'), 'wb') as file:
-    pickle.dump(max_subband, file)
+  with open(os.path.join(os.path.dirname(__file__), 'Images/max_frequencies.pkl'), 'wb') as file:
+    pickle.dump(max_frequencies, file)
   
-  return(watermarked_img,max_subband) 
+  return(watermarked_img,max_frequencies) 
  
 
-def extraction_DWT_watermark(imagex,max_subband):
+def extraction_DWT_watermark(imagex,max_frequencies):
     if len((np.asarray(imagex)).shape)==3:
        long=3
     else:
@@ -252,7 +252,7 @@ def extraction_DWT_watermark(imagex,max_subband):
      restored_img=np.copy(image)
      restored_img = np.array(restored_img.astype("uint8"))
 
-     max_sub=max_subband[channel]
+     max_sub=max_frequencies[channel]
      Auth_watermark=[]
      z=0
      # Apply Discrete wavelet transform to the channel
