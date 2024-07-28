@@ -228,7 +228,7 @@ def embedding_DWT_watermark(original_img,org_watermark) :
   else:
       watermarked_img=w_comp_arr[0]
   
-  with open(os.path.join(os.path.dirname(__file__), 'Images/max_frequencies.pkl'), 'wb') as file:
+  with open(os.path.join(os.path.dirname(__file__), 'Images/Max_frequencies.pkl'), 'wb') as file:
     pickle.dump(max_frequencies, file)
   
   return(watermarked_img,max_frequencies) 
